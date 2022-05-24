@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/style/style.css' />
+  <script src="./script/manage.js" type="module"></script>
+</head>
+
+<body>
+  <header class="container">
+    <nav class="nav">
+      <div class="nav-left">
+        <a class="brand" href="profile.html"><img
+            src="https://cdm16007.contentdm.oclc.org/iiif/2/p267401coll32:4553/100,0,1100,1100/150,150/0/default.jpg"
+            alt="logo"></a>
+        <h1 class="brand text-light">
+          LRDA Users
+          <i class="fa fa-cubes"></i>
+        </h1>
+      </div>
+      <div class="nav-right tabs">
+        <a id="username" href="profile.html" class="bg-light">Profile</a>
+        <a href="manage.html" class="bg-light">Users</a>
+        <button href="profile.html" class="bg-light" is="auth-button" disabled style="visibility: hidden;"></button>
+      </div>
+    </nav>
+  </header>
+
+  <div class='container card'>
+    <p>Welcome to <%= title %>, a login service for the DLA project hosted by Saint Louis University's Research
+        Computing Group.</p>
+    <ul>
+      <li><a href="/profile.html">DLA: Login or Register</a></li>
+    </ul>
+</body>
+
+</html>

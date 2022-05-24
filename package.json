@@ -1,0 +1,34 @@
+{
+  "name": "rerum_users",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/startApp.js",
+    "devstart": "node ./bin/startApp.js",
+    "serverstart": "SET DEBUG=node-js-prototyping:* & npm devstart",
+    "retrieve-secrets": "aws-secrets-dotenv createLocalEnvironment prod",
+    "test": "jest",
+    "runtest": "node ./bin/testApp.js"
+  },
+  "dependencies": {
+    "auth0": "^2.40.0",
+    "aws-secrets-dotenv": "^1.0.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "dotenv-expand": "^8.0.1",
+    "ejs": "^3.1.6",
+    "express": "^4.16.4",
+    "express-oauth2-jwt-bearer": "^1.1.0",
+    "got": "^11.8.3",
+    "http-errors": "~1.6.3",
+    "jest-cli": "^27.5.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@jest-mock/express": "^1.4.5",
+    "jest": "^27.5.1",
+    "supertest": "^6.2.2"
+  }
+}

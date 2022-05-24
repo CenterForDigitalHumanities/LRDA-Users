@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>LRDA Users Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <!-- <script src="https://cdn.auth0.com/js/auth0/9.19.0/auth0.min.js"></script> -->
+    <!-- <script src="./script/heartbeat.js" type="text/javascript"></script> -->
+    <script src="./script/manage.js" type="module"></script>
+</head>
+
+<body data-user="admin">
+    <header class="container">
+        <nav class="nav">
+            <div class="nav-left">
+                <a class="brand" href="profile.html"><img
+                        src="https://cdm16007.contentdm.oclc.org/iiif/2/p267401coll32:4553/100,0,1100,1100/150,150/0/default.jpg"
+                        alt="logo"></a>
+                <h1 class="brand text-light">
+                    LRDA Users
+                    <i class="fa fa-cubes"></i>
+                </h1>
+            </div>
+            <div class="nav-right tabs">
+                <a id="username" href="profile.html" class="bg-light">Profile</a>
+                <a href="manage.html" class="bg-light active">Users</a>
+                <button href="profile.html" class="bg-light" is="auth-button">Logout</button>
+              </div>
+        </nav>
+    </header>
+
+    <div class='container card'>
+        <p>
+            Manage LRDA Apps users' roles. Admins can make other users 'Public' or 'Contributor'.
+            Note that profile information updating is not available at this time.
+        </p>
+        <h4> LRDA Users List </h4>
+        <ul id="userList">
+
+        </ul>
+    </div>
+</body>
+
+</html>

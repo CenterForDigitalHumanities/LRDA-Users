@@ -1,0 +1,45 @@
+@import "https://unpkg.com/chota@latest";
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css";
+
+#msg {
+    color: green;
+    font-weight: bold;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #2F353E;
+}
+
+span[data-username]::after{
+    content: attr(data-username);
+}
+span[data-nickname]::after{
+    content: attr(data-nickname);
+}
+span[data-email]::after{
+    content: attr(data-email);
+}
+span[data-avatar]::after{
+    content: attr(data-avatar);
+}
+
+
+h1 {
+    cursor: pointer;
+    font-weight: 300;
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 10px;
+}
+
+.status_header {
+    color: gray;
+}
+
+.role{
+    text-transform: capitalize;
+}
+
+.no-break {
+    white-space: nowrap;
+}
