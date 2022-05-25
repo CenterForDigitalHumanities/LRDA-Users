@@ -98,7 +98,7 @@ router.get('/getAllUsers', async function (req, res, next) {
                         //.filter(roleObj => roleObj.name.includes("rerum_user"))
                         .map(roleObj => roleObj.name)
                     }
-                    u[process.env.LRDA_ROLES_CLAIM] = r
+                    u[process.env.RERUM_ROLES_CLAIM] = r
                   })
                   .catch(err => {
                     //Could not get user roles.
@@ -235,8 +235,8 @@ function getURLHash(variable, url) {
  */
 function isAdmin(user) {
   let roles = { roles: [] }
-  if (user[process.env.LRDA_ROLES_CLAIM]) {
-    roles = user[process.env.LRDA_ROLES_CLAIM].roles ?? { roles: [] }
+  if (user[process.env.RERUM_ROLES_CLAIM]) {
+    roles = user[process.env.RERUM_ROLES_CLAIM].roles ?? { roles: [] }
   }
   return roles.includes(process.env.LRDA_ADMIN_ROLE)
 }
@@ -247,8 +247,8 @@ function isAdmin(user) {
  */
 function isLRDAUser(user) {
   return (
-    user[process.env.LRDA_APP_CLAIM] &&
-    user[process.env.LRDA_APP_CLAIM].includes("lrda")
+    user[process.env.RERUM_APP_CLAIM] &&
+    user[process.env.RERUM_APP_CLAIM].includes("lrda")
   )
 }
 
