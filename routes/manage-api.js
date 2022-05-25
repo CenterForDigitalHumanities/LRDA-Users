@@ -87,7 +87,7 @@ router.get('/getAllUsers', async function (req, res, next) {
           //FIXME I believe this is limited to 50 users at a time.
           //https://auth0.com/docs/manage-users/user-search/retrieve-users-with-get-users-endpoint#limitations
           let usersWithRoles = await manager.getUsers(filter)
-            .then(allUsers => allUsers.filter(usr => usr.app_metadata.app.includes("lrda"))
+            .then(allUsers => allUsers.filter(usr => usr.app_metadata.app.includes("lrda")))
             .then(async (lrdaUsers) => {
               return Promise.all(lrdaUsers.map(async (u) => {
                 let roles = await manager.getUserRoles({ "id": u.user_id })
