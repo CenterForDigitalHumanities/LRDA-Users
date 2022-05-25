@@ -5,7 +5,7 @@
  */
 
 var app = require('../app')
-var debug = require('debug')('rerum_users:server')
+var debug = require('debug')('lrda_users:server')
 var http = require('http')
 
 

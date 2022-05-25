@@ -30,7 +30,7 @@ router.put('/updateProfileInfo', async function (req, res, next) {
   if (token) {
     authenticator.getProfile(token)
       .then(async (current_user) => {
-        if (isRerumUser(current_user)) {
+        if (isLRDAUser(current_user)) {
           //The user object is in the body, and the id is present or fail.
           let userObj = req.body ?? {}
           const userid = userObj.sub ?? userObj.user_id ?? userObj.id ?? ""
@@ -79,8 +79,8 @@ router.get('/getAllUsers', async function (req, res, next) {
   token = token.replace("Bearer ", "")
   try {
     authenticator.getProfile(token)
-      .then(async (current_rerum_users) => {
-        if (isAdmin(current_rerum_users)) {
+      .then(async (current_user) => {
+        if (isAdmin(current_user)) {
           let filter = {
             "q": `_exists_:app_metadata.app`
           }
@@ -130,7 +130,7 @@ router.get('/getAllUsers', async function (req, res, next) {
 })
 
 /**
- * Tell our RERUM Auth0 to assign the given user id to the RERUM Public role.
+ * Tell our RERUM Auth0 to assign the given user id to the LRDA Public role.
  * This limits access token scope.
  * Other roles are removed.
  */
@@ -169,7 +169,7 @@ router.get('/assignPublicRole/:_id', async function (req, res, next) {
 })
 
 /**
- * Tell our RERUM Auth0 to assign the given user id to the RERUM Contributor role.
+ * Tell our RERUM Auth0 to assign the given user id to the LRDA Contributor role.
  * This limits access token scope.
  * Other roles are removed.
  */
@@ -208,7 +208,7 @@ router.get('/assignContributorRole/:_id', async function (req, res, next) {
 })
 
 /**
-* Tell our RERUM Auth0 to assign the given user id to the RERUM Admin role.
+* Tell our RERUM Auth0 to assign the given user id to the LRDA Admin role.
 * Other roles are removed.
 */
 router.post('/assignAdminRole/:_id', async function (req, res, next) {
@@ -245,10 +245,10 @@ function isAdmin(user) {
  *  Given a user profile, check if that user belongs to a LRDA App.
  *  Any LRDA Apps user with any level of permission will at least have "rerum" in the apps array.
  */
-function isRerumUser(user) {
+function isLRDAUser(user) {
   return (
     user[process.env.LRDA_APP_CLAIM] &&
-    user[process.env.LRDA_APP_CLAIM].includes("rerum")
+    user[process.env.LRDA_APP_CLAIM].includes("lrda")
   )
 }
 
