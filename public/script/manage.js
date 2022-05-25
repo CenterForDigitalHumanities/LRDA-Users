@@ -67,16 +67,34 @@ function adminOnly(token = window.LRDA_USER?.authorization) {
                 let elem = ``
                 for (let user of user_arr) {
                     //This presumes they will only have one role here.  Make sure getAllUsers() accounts for that.
-                    const role = user[LRDA_USER_ROLES_CLAIM]?.roles[0]?.replace("lrda_user_", "") ?? "Role Not Assigned"
+                    const roles = user[LRDA_USER_ROLES_CLAIM]?.roles
+                    let role = "Role Not Assigned"
+                    if(roles){
+                        role = roles.map(r => {
+                            if(r.indexOf("lrda_user_") > -1){
+                                return r
+                                break
+                            }
+                        })
+                    }
+                    role = role.replace("lrda_user_", "") 
                     elem += `<li user="${_u.name}">${user.name}
-            <em class="role" userid="${user.user_id}"> : ${role}</em>`
-                    if (role !== "Admin") {
+                        <em class="role" userid="${user.user_id}"> : ${role}</em>`
+                    if (role !== "admin") {
                         elem += `<div class="actions">
-                        <input class="tag is-small "bg-primary" 
+                         <input class="tag is-small bg-primary" 
                             type="button" 
                             value="Make ${role === "public" ? "Contributor" : "Public"}" 
-                            onclick="assignRole('${user.user_id}','${role === "public" ? 'Contributor' : 'Public'}')"/>
-                    </div>`
+                            onclick="assignRole('${user.user_id}','${role === "public" ? 'Contributor' : 'Public'}')"
+                         />
+
+                         <input class="tag is-small bg-primary" 
+                            type="button" 
+                            value="R3setM3" 
+                            onclick="resetPassword('${user.user_id}', 'R3setM3')"
+                         />
+
+                        </div>`
                     }
                     elem += `</li>`
                 }
