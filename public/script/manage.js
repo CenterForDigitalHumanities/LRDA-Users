@@ -6,7 +6,7 @@ const AUDIENCE = "https://cubap.auth0.com/api/v2/"
 const CLIENTID = "CayJsaU9sXIrOIgziOwDIDdGfDfR3Am1"
 const LRDA_REDIRECT = origin + "/manage.html"
 const DOMAIN = "cubap.auth0.com"
-const LRDA_USER_ROLES_CLAIM = "http://lrda.rerum.io/user_roles"
+const LRDA_USER_ROLES_CLAIM = "http://rerum.io/user_roles"
 const LRDA_PUBLIC_ROLE = "lrda_user_public"
 const LRDA_CONTRIBUTOR_ROLE = "lrda_user_contributor"
 const LRDA_ADMIN_ROLE = "lrda_user_admin"
@@ -70,9 +70,9 @@ function adminOnly(token = window.LRDA_USER?.authorization) {
                     const roles = user[LRDA_USER_ROLES_CLAIM]?.roles
                     let role = "Role Not Assigned"
                     if(roles){
-                        role = roles.map(r => {
+                        roles.forEach(r => {
                             if(r.indexOf("lrda_user_") > -1){
-                                return r
+                                role = r
                             }
                         })
                     }
@@ -81,15 +81,15 @@ function adminOnly(token = window.LRDA_USER?.authorization) {
                         <em class="role" userid="${user.user_id}"> : ${role}</em>`
                     if (role !== "admin") {
                         elem += `<div class="actions">
-                         <input class="tag is-small bg-primary" 
+                         <input class="tag is-small bg-secondary" 
                             type="button" 
                             value="Make ${role === "public" ? "Contributor" : "Public"}" 
                             onclick="assignRole('${user.user_id}','${role === "public" ? 'Contributor' : 'Public'}')"
                          />
 
-                         <input class="tag is-small bg-primary" 
+                         <input class="tag is-small bg-secondary" 
                             type="button" 
-                            value="R3setM3" 
+                            value="Reset Pass" 
                             onclick="resetPassword('${user.user_id}', 'R3setM3')"
                          />
 
