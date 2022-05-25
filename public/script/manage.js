@@ -73,7 +73,6 @@ function adminOnly(token = window.LRDA_USER?.authorization) {
                         role = roles.map(r => {
                             if(r.indexOf("lrda_user_") > -1){
                                 return r
-                                break
                             }
                         })
                     }
@@ -157,6 +156,11 @@ async function updateUserInfo(event, userid=window.LRDA_USER?.sub) {
             delete data[prop]
         }
     }
+    //Cannot update Email and Password at same time.  If they are both dirty...it won't work.
+    if(data.password && data.email){
+        alert("Your password will update, but your email will not be updated.  You cannot update your password and email at the same time. ")
+        delete data.email
+    }
     data.user_id = userid
         let updatedUser = await fetch("/lrda-users/manage/updateProfileInfo", {
             method: 'PUT',
@@ -179,6 +183,7 @@ async function updateUserInfo(event, userid=window.LRDA_USER?.sub) {
         else {
             alert("User Info Update Failed!")
         }
+        location.reload()
 }
 
 /**
