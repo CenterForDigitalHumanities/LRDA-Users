@@ -24,7 +24,6 @@ span[data-avatar]::after{
     content: attr(data-avatar);
 }
 
-
 h1 {
     cursor: pointer;
     font-weight: 300;
@@ -42,4 +41,8 @@ h1 {
 
 .no-break {
     white-space: nowrap;
+}
+
+img{
+    max-height:  16em;
 }
