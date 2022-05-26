@@ -20,7 +20,7 @@
                         src="https://cdm16007.contentdm.oclc.org/iiif/2/p267401coll32:4553/100,0,1100,1100/150,150/0/default.jpg"
                         alt="logo"></a>
                 <h1 class="brand text-light hide-sm hide-xs">
-                    LRDA Users
+                    RERUM Users
                     <i class="fa fa-cubes"></i>
                 </h1>
             </div>
@@ -33,7 +33,7 @@
     </header>
     <div class="container">
         <p class="text-light">
-            Update your user profile for the LRDA Apps
+            Update your user profile for the RERUM Apps
         </p>
         <div class="row">
             <form id="userForm" class="card col">
@@ -42,14 +42,12 @@
                 </header>
                 <div class="row">
                     <div class="col">
-                        <label> Password </label>
-                        <input name="password" type="text"/>
                         <label> Username </label>
                         <input name="name" type="text"/>
                         <label> Nickname </label>
                         <input name="nickname" type="text"/>
                         <label> Email </label>
-                        <input name="email" type="email"/>
+                        <input name="email" type="text"/>
                         <label> Picture </label>
                         <input name="picture" type="url"/>
                     </div>
@@ -71,20 +69,32 @@
                 </figure>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <form id="passForm" class="card col">
+                <header>
+                    <h4>Update Password Only</h4>
+                </header>
+                <div class="row">
+                    <div class="col">
+                        <label> Password </label>
+                        <input name="password" type="text"/>
+                    </div>
+                </div>
+                <footer class="is-right row">
+                    <input class="button outline text-dark col" type="submit" value="Update Password Only" />
+                </footer>
+            </form>
+        </div>
     </div>
     <script>
         //Get the inputs on a form so we can control a dirty state on input perhaps.  Don't need to do updates if there are no changes.
-        /*
-        this.inputs = Array.from(elem.querySelectorAll(DEER.INPUTS.map(s => s + "[" + DEER.KEY + "]").join(",")))
-        this.inputs.forEach(inpt => {
+        //Maybe this goes in manage.js?  Keeping it here for now.
+        Array.from(document.querySelectorAll("input")).forEach(inpt => {
            inpt.addEventListener('input', (e) => {
                inpt.$isDirty = true //Make the input dirty
-               this.$isDirty = true //Make the DeerReport dirty
            }) 
         })
-        */
-        //Right now the script grabs all the inputs and updates them all, even if they are unchanged.
+        
         //Auth0 has some rules where certain fields cannot be updated at the same time...
         //Also, maybe password reset could just be its own UI or HTML page
         //https://auth0.com/docs/authenticate/database-connections/password-change
