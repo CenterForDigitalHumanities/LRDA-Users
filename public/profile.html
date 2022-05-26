@@ -73,6 +73,25 @@
         </div>
     </div>
     </div>
+    <script>
+        //Get the inputs on a form so we can control a dirty state on input perhaps.  Don't need to do updates if there are no changes.
+        /*
+        this.inputs = Array.from(elem.querySelectorAll(DEER.INPUTS.map(s => s + "[" + DEER.KEY + "]").join(",")))
+        this.inputs.forEach(inpt => {
+           inpt.addEventListener('input', (e) => {
+               inpt.$isDirty = true //Make the input dirty
+               this.$isDirty = true //Make the DeerReport dirty
+           }) 
+        })
+        */
+        //Right now the script grabs all the inputs and updates them all, even if they are unchanged.
+        //Auth0 has some rules where certain fields cannot be updated at the same time...
+        //Also, maybe password reset could just be its own UI or HTML page
+        //https://auth0.com/docs/authenticate/database-connections/password-change
+        //https://auth0.com/docs/manage-users/user-accounts/user-profiles/configure-connection-sync-with-auth0
+        //https://community.auth0.com/t/password-update-fails-with-management-api/7807/4
+        
+    </script>
 </body>
 
 </html>
