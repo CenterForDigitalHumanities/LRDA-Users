@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Where's Religion Users Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="script/lrda_public_auth.js" type="module"></script>
+    <script src="script/manage.js" type="module"></script>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+
+<body class="container" data-user="admin">
+    <h1><i class="fa fa-cubes"></i>
+        Where's Religion</h1>
+        <button is="auth-button">login</button>
+    <div class='' id="intro">
+        <p>
+            Managing Where's Religion users' roles is limited to administrators (not listed below).
+        <ol>
+            <li><strong>Contributor:</strong> any student who is committing descriptions, transcriptions, etc.</li>
+            <li><strong>Manager:</strong> selected researchers/RAs who can add, edit and remove records</li>
+
+        </ol>
+        </p>
+    </div>
+    <div class='panel panel-info' name="block">
+        <h4> Where's Religion Users List </h4>
+        <ul id="userList">
+            <li>
+                <span class="username">Loading...</span>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+name: Where's Religion Users Deploy
+on: 
+  push:
+    branches:
+      main
+jobs:
+    deploy:
+      strategy: 
+        matrix:
+            node-version: [16]
+            machines: [vlcdhprdp01, vlcdhp02]
+      runs-on: ${{ matrix.machines }}
+      steps:
+        - uses: actions/checkout@v3
+        - run: |
+            if [[ ! -e /srv/node/logs/lrda_users.txt ]]; then
+                mkdir -p /srv/node/logs
+                touch /srv/node/logs/lrda_users.txt
+            fi
+            cd /srv/node/lrda-users/
+            pm2 stop lrda_users
+            git stash
+            git pull
+            npm install
+            pm2 start -i max bin/lrda_users.js

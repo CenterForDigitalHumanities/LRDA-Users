@@ -6,9 +6,13 @@
     font-weight: bold;
 }
 
-body {
+html {
     font-family: 'Open Sans', sans-serif;
     background-color: #2F353E;
+}
+
+body {
+    background-color: hsl(216, 14%, 91%);
 }
 
 span[data-username]::after{
@@ -23,6 +27,7 @@ span[data-email]::after{
 span[data-avatar]::after{
     content: attr(data-avatar);
 }
+
 
 h1 {
     cursor: pointer;
@@ -43,6 +48,18 @@ h1 {
     white-space: nowrap;
 }
 
-img{
-    max-height:  16em;
+#userList li {
+    flex-basis: clamp(16em, 25%, 20em);
+    width: 18em;
+    overflow: hidden;
+    padding: 1em;
+}
+
+#userList img {
+    max-width: 25%;
+}
+
+#userList {
+    display: flex;
+    flex-wrap: wrap;
 }

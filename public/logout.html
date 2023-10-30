@@ -14,35 +14,9 @@
 
 <body class="container">
     <p>
-        This page will log you out of LRDA.
-        <a target="_blank" href="/lrda-users/profile.html">Login here</a>.
+        This page will log you out of the Where's Religion Mobile App
     </p>
-    <script src="https://cdn.auth0.com/js/auth0/9.19.0/auth0.min.js"></script>
-    <!-- <script type="text/javascript" src="./script/heartbeat.js"></script> -->
-    <script type="text/javascript">
-        /**
-         * An HTML page instead of an endpoint to initiate a user log out of LRDA Apps.
-         */ 
-        if (confirm("Do you really want to log out?") === true) {
-            const DOMAIN = "cubap.auth0.com"
-            const CLIENTID = "CayJsaU9sXIrOIgziOwDIDdGfDfR3Am1"
-            const redirect = origin
-            document.cookie = "LRDA-Login-Token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-            // stopHeartbeat()
-            let webAuth = new auth0.WebAuth({
-                domain:       DOMAIN,
-                clientID:     CLIENTID
-            })
-            webAuth.logout({
-                returnTo: redirect,
-                clientID: CLIENTID
-            })    
-        }
-        else{
-            //login.html will route them to manage.html or profile.html.
-            window.location="profile.html"
-        }
-    </script>
+    <script src="script/lrda_public_auth.js" type="module"></script>
 </body>
 
 </html>

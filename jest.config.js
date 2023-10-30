@@ -21,7 +21,7 @@ module.exports = {
   detectOpenHandles : false,
 
   displayName: {
-    name: 'LRDA Users',
+    name: 'Where's Religion Users',
     color: 'cyan',
   },
 
