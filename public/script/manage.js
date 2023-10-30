@@ -3,7 +3,7 @@ const auth = document.querySelector('[is="auth-button"]')
 import jwt_decode from "/script/jwt.js"
 
 // const AUDIENCE = "https://cubap.auth0.com/api/v2/"
-// const CLIENTID = "z1DuwzGPYKmF7POW9LiAipO5MvKSDERM"
+// const CLIENTID = "RkDy2LcAw39zmWL1U0pWzb97xCjviq4q"
 // const LRDA_REDIRECT = origin + "/manage.html"
 // const DOMAIN = "cubap.auth0.com"
 const LRDA_USER_ROLES_CLAIM = "http://rerum.io/user_roles"
@@ -42,7 +42,7 @@ auth.addEventListener("lrda-authenticated", ev => {
     }
 })
 
-const ROLES = ['public', 'contributor', 'manager']
+const ROLES = ['public', 'contributor']
 
 async function adminOnly(token = window.LRDA_USER?.authorization) {
     //You can trust the token.  However, it may have expired.
@@ -219,5 +219,5 @@ function getReferringPage() {
  */
 function userHasRole(user, roles) {
     if (!Array.isArray(roles)) { roles = [roles] }
-    return Boolean(user?.[LRDA_ROLES_CLAIM]?.roles.filter(r => roles.includes(r)).length)
+    return Boolean(user?.[LRDA_USER_ROLES_CLAIM]?.roles.filter(r => roles.includes(r)).length)
 }

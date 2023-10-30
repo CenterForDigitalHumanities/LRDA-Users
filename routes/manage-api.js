@@ -7,7 +7,6 @@ const router = express.Router()
 const got = require('got')
 
 const ROLES = [
-  process.env.ROLE_MANAGER_ID,
   process.env.ROLE_CONTRIBUTOR_ID,
   process.env.ROLE_PUBLIC_ID
 ].map(str => str.split(' ')[0])
@@ -95,7 +94,6 @@ router.get('/getAllUsers', async function (req, res, next) {
         return Promise.all(fetchUsersInRoles)
           .then(userGroups => {
             const roleNames = [
-              "manager",
               "contributor",
               "public"
             ]
