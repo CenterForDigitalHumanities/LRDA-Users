@@ -42,7 +42,7 @@ auth.addEventListener("lrda-authenticated", ev => {
     }
 })
 
-const ROLES = ['public', 'contributor']
+const ROLES = ['public', 'contributor', 'student', 'instructor']
 
 async function adminOnly(token = window.LRDA_USER?.authorization) {
     //You can trust the token.  However, it may have expired.
