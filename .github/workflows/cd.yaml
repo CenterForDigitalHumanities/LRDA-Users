@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Create .env from secrets
-        uses: SpicyPizza/create-envfile@v1.3
+        uses: SpicyPizza/create-envfile@v2.0
         with:
           envkey_AUDIENCE: ${{ secrets.AUDIENCE }}
           envkey_DOMAIN: ${{ secrets.DOMAIN }}
