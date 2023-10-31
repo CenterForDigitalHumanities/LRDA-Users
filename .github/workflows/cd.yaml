@@ -1,4 +1,4 @@
-name: Where's Religion Users Deploy
+name: Where's Religion Users deploy on push to main.
 on: 
   push:
     branches:
@@ -7,7 +7,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
       # - name: Create .env from secrets
       #   uses: SpicyPizza/create-envfile@v1.3
       #   with:
@@ -17,13 +17,13 @@ jobs:
       #     envkey_ISSUER_BASE_URL: ${{ secrets.ISSUER_BASE_URL }}
       # Set up NodeJS
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: "16"
 
       # Speed up subsequent runs with caching
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -43,11 +43,10 @@ jobs:
       needs: [test]
       strategy: 
         matrix:
-            node-version: [16]
             machines: [vlcdhprdp01]
       runs-on: ${{ matrix.machines }}
       steps:
-        - uses: actions/checkout@v3
+        - uses: actions/checkout@master
         - run: |
             if [[ ! -e /srv/node/logs/lrda_users.txt ]]; then
                 mkdir -p /srv/node/logs
