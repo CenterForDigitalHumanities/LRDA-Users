@@ -74,12 +74,18 @@ async function adminOnly(token = window.LRDA_USER?.authorization) {
                 el.addEventListener('input',event=>assignRole(event.target.name,event.target.value))
             })
         } else {
-            userList.innerHTML = `
+            allUsers.classList.add("is-hidden")
+            singleUserInfo.classList.remove("is-hidden")
+            singleUserInfo.innerHTML = `
             <h1>${LRDA_USER.nickname}</h1>
-            <small>${LRDA_USER.email}</small>
-            <p>(${LRDA_USER['http://rerum.io/user_roles']?.roles?.map(role=>role.replace(/_/g,'&nbsp;')).join(', ')})</p>
-            <img src="${LRDA_USER.picture}">
+            <p>E-mail: ${LRDA_USER.email}</p>
+            <p>Where's Religion Role: <b>${LRDA_USER['http://rerum.io/user_roles']?.roles?.filter(role => role.includes("lrda_user"))
+            .map(role=>{
+                if(role.includes("lrda_user")) return role.replace("lrda_user_", "")
+            }).join(", ")}</b></p>
+            <small><i>Note: Profile editing is not yet available.  You must be an admin to change user roles.</i></small>
             `
+            //Avatar: <img src="${LRDA_USER.picture}">
         }
     } catch (_err) {
         alert('not admin. boop.')

@@ -63,3 +63,15 @@ h1 {
     display: flex;
     flex-wrap: wrap;
 }
+
+.is-hidden{
+    display: none;
+}
+
+.inline{
+    display: inline-block;
+}
+
+#singleUserInfo{
+    padding-left: 1em;
+}

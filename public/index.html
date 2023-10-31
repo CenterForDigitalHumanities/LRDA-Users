@@ -17,17 +17,20 @@
 
 <body class="container" data-user="admin">
     <h1><i class="fa fa-cubes"></i>
-        Where's Religion</h1>
+        Where's Religion Users Portal</h1>
         <button is="auth-button">login</button>
     <div class='' id="intro">
         <p>
-            Managing Where's Religion users' roles is limited to administrators (not listed below).
+            Managing Where's Religion users' roles is limited to administrators (not listed below).  If you need to register as an admin, contact the Where's Religion Mobile App administrators.  
         <ol>
-            <li><strong>Contributor:</strong> any student who is committing descriptions, transcriptions, etc.</li>
+            <li><strong>Public:</strong> The default role for a user who has registered or signed up via the Where's Religion Mobile Application.</li>
+            <li><strong>Contributor:</strong> Anyone that may create or edit data. </li>
+            <li><strong>Student:</strong> Any user identified in relation to an instructor who approves their contributions.</li>
+            <li><strong>Instructor:</strong> Anyone who must approve contributions, perhaps only in relation to student contributors.</li>
         </ol>
         </p>
     </div>
-    <div class='panel panel-info' name="block">
+    <div id="allUsers" class='panel panel-info' name="block">
         <h4> Where's Religion Users List </h4>
         <ul id="userList">
             <li>
@@ -35,6 +38,7 @@
             </li>
         </ul>
     </div>
+    <div id="singleUserInfo" class='panel panel-info is-hidden'></div>
 </body>
 
 </html>

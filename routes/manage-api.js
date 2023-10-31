@@ -7,10 +7,10 @@ const router = express.Router()
 const got = require('got')
 
 const ROLES = [
-  process.env.ROLE_PUBLIC_ID,
-  process.env.ROLE_CONTRIBUTOR_ID,
+  process.env.ROLE_INSTRUCTOR_ID,
   process.env.ROLE_STUDENT_ID,
-  process.env.ROLE_INSTRUCTOR_ID
+  process.env.ROLE_CONTRIBUTOR_ID,
+  process.env.ROLE_PUBLIC_ID
 ].map(str => str.split(' ')[0])
 
 let manager = new ManagementClient({
@@ -96,10 +96,10 @@ router.get('/getAllUsers', async function (req, res, next) {
         return Promise.all(fetchUsersInRoles)
           .then(userGroups => {
             const roleNames = [
-              "public",
-              "contributor",
+              "instructor",
               "student",
-              "instructor"
+              "contributor",
+              "public"
             ]
             res.json(userGroups.map((group, index) => group.map(user => {
               user.role = roleNames[index]
