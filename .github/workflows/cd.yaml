@@ -7,7 +7,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      # - uses: actions/checkout@master
       # - name: Create .env from secrets
       #   uses: SpicyPizza/create-envfile@v1.3
       #   with:
@@ -36,7 +36,7 @@ jobs:
             ${{ runner.os }}-
       # Install required deps for action
       - name: Install Dependencies
-      uses: actions/checkout@master
+        uses: actions/checkout@master
       - run: npm install
       - run: npm run runtest
     deploy:
