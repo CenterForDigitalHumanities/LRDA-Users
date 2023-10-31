@@ -22,7 +22,7 @@ jobs:
           envkey_ROLE_PUBLIC_ID: ${{ secrets.ROLE_PUBLIC_ID }}
           envkey_LRDA_ROLES_CLAIM: ${{ secrets.LRDA_ROLES_CLAIM }}
           envkey_LRDA_APP_CLAIM: ${{ secrets.LRDA_APP_CLAIM }}
-            fail_on_empty: true
+          fail_on_empty: true
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
