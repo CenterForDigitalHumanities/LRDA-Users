@@ -36,10 +36,8 @@ jobs:
             ${{ runner.os }}-
       # Install required deps for action
       - name: Install Dependencies
+      uses: actions/checkout@master
       - run: npm install
-
-      # Finally, run our tests
-      - name: Run the tests
       - run: npm run runtest
     deploy:
       needs: [test]
