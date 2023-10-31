@@ -6,10 +6,10 @@ const express = require('express')
 const router = express.Router()
 const got = require('got')
 
-console.log(process.env.ROLE_INSTRUCTOR_ID)
-console.log(process.env.ROLE_STUDENT_ID)
-console.log(process.env.ROLE_CONTRIBUTOR_ID)
-console.log(process.env.ROLE_PUBLIC_ID)
+console.log(process.env.ROLE_INSTRUCTOR_ID.split(" ")[0])
+console.log(process.env.ROLE_STUDENT_ID.split(" ")[0])
+console.log(process.env.ROLE_CONTRIBUTOR_ID.split(" ")[0])
+console.log(process.env.ROLE_PUBLIC_ID.split(" ")[0])
 
 const ROLES = [
   process.env.ROLE_INSTRUCTOR_ID,
