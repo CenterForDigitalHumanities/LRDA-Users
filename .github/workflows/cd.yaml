@@ -6,6 +6,22 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
+      - name: Create .env from secrets
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_AUDIENCE: ${{ secrets.AUDIENCE }}
+          envkey_DOMAIN: ${{ secrets.DOMAIN }}
+          envkey_CLIENTID: ${{ secrets.CLIENTID }}
+          envkey_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          envkey_MONGODBNAME: ${{ secrets.MONGODBNAME }}
+          envkey_ROLE_ADMIN_ID: ${{ secrets.ROLE_ADMIN_ID }}
+          envkey_ROLE_CONTRIBUTOR_ID: ${{ secrets.ROLE_CONTRIBUTOR_ID }}
+          envkey_ROLE_STUDENT_ID: ${{ secrets.ROLE_STUDENT_ID }}
+          envkey_ROLE_INSTRUCTOR_ID: ${{ secrets.ROLE_INSTRUCTOR_ID }}
+          envkey_ROLE_PUBLIC_ID: ${{ secrets.ROLE_PUBLIC_ID }}
+          envkey_ROLES_CLAIM: ${{ secrets.LRDA_ROLES_CLAIM }}
+          envkey_APP_CLAIM: ${{ secrets.LRDA_APP_CLAIM }}
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
