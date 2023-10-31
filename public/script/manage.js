@@ -2,20 +2,7 @@
 const auth = document.querySelector('[is="auth-button"]')
 import jwt_decode from "/script/jwt.js"
 
-// const AUDIENCE = "https://cubap.auth0.com/api/v2/"
-// const CLIENTID = "RkDy2LcAw39zmWL1U0pWzb97xCjviq4q"
-// const LRDA_REDIRECT = origin + "/manage.html"
-// const DOMAIN = "cubap.auth0.com"
 const LRDA_USER_ROLES_CLAIM = "http://rerum.io/user_roles"
-
-// /**
-//  * Solely for getting the user profile.
-//  */
-// let authenticator = new auth0.Authentication({
-//     "domain": DOMAIN,
-//     "clientID": CLIENTID,
-//     "scope": "read:roles update:current_user_metadata read:current_user name nickname picture email profile openid offline_access"
-// })
 
 auth.addEventListener("lrda-authenticated", ev => {
     const ref = getReferringPage()
