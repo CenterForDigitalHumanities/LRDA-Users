@@ -47,6 +47,12 @@ const getReferringPage = () => {
     }
 }
 
+/**
+ * The actual login button to click which performs the login action with Auth0.
+ * It will retrieve the user information from the token and turn it into JSON.
+ * It stores that JSON in window.LRDA_USER as well as announces it out in an Event.
+ * This button can be reused across web apps that need to share this user base.
+ */ 
 class AuthButton extends HTMLButtonElement {
     constructor() {
         super()
@@ -77,6 +83,11 @@ class AuthButton extends HTMLButtonElement {
 
 customElements.define('auth-button', AuthButton, { extends: 'button' })
 
+/**
+ * An element that tracks the Agent URI of the logged in user.
+ * Attribute this user to data they are creating by pulling its value and adding it to your data.
+ * This button can be reused across web apps that need to share this user base.
+ */ 
 class AuthCreator extends HTMLInputElement {
     constructor() {
         super()
