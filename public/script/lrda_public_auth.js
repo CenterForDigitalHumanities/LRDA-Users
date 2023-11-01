@@ -8,6 +8,10 @@
  * - Include this module and a button[is='auth-button'] element to use. 
  * - Add the `disabled` property on any page that should be available to the public, but knowing the user may be helpful.
  * - This can be made more generic by passing in the constants and parameterizing {app:'lrda'}.
+ *
+ * You can import this module into any other web app that needs to log in to the LRDA space.  For example...
+ *    - import AuthButton from 'http://lrda-users.rerum.io/script/lrda_public_auth.js'
+ *    - <script src="http://lrda-users.rerum.io/script/lrda_public_auth.js" type="module"></script>
  */
 
 import 'https://cdn.auth0.com/js/auth0/9.19.0/auth0.min.js'
