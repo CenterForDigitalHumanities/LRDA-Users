@@ -2,7 +2,7 @@
 
 /**
  * This module is used to define the routes of static resources available in `/public`
- * but also under `/lrda-users` paths.
+ * and `/lrda-users` paths.
  * 
  * @author cubap 
  */

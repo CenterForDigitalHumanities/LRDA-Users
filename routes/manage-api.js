@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+/**
+ * Role management functionality.  Uses internal routes and endpoints.
+ */  
+
 const ManagementClient = require('auth0').ManagementClient
 const AuthenticationClient = require('auth0').AuthenticationClient
 const express = require('express')

@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+/**
+ * Register the internal role management routes
+ */ 
+
 const express = require('express')
 const path = require('path')
 const router = express.Router()

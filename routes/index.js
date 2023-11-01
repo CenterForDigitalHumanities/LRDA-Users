@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+/**
+ * Initialize Express and register top level routes.
+ */ 
+
 let express = require('express')
 let router = express.Router()
 
