@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 
 /**
+ * This is unused at the moment.  It could be used to do graceful handling of expiring tokens.
+ */
+
+/**
  * Note that all of this is fresh upon entering the page with a good login token.
  * Instead of a timer, we can refresh these upon page focus/action
  * It depends how quick tokens will die.
@@ -11,20 +15,19 @@ const webAuth = new auth0.WebAuth({
     "audience": AUDIENCE
 })
 let login_beat = null
+
 function startHeartbeat() {
-    login_beat = setInterval(async function () {
+    login_beat = setInterval(async function() {
         if (localStorage.getItem("LRDA-Login-Token")) {
             webAuth.checkSession({}, (err, result) => {
                 if (err) {
                     login()
                     stopHeartbeat()
-                }
-                else {
+                } else {
                     localStorage.setItem("LRDA-Login-Token", result.accessToken)
                 }
             })
-        }
-        else {
+        } else {
             login()
             //You need to login to start a session!
         }

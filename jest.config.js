@@ -21,7 +21,7 @@ module.exports = {
   detectOpenHandles : false,
 
   displayName: {
-    name: "Where's Religion Users",
+    name: "Where's Religion Mobile App User Management Portal",
     color: 'cyan',
   },
 

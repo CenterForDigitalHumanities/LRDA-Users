@@ -1,13 +1,9 @@
 const got = require('got')
-// const jwt = require('express-jwt')
-// Currently unsed, but we should consider setting scopes moving forward and this will be handy then.
-// const jwtAuthz = require('express-jwt-authz')
 const { auth } = require('express-oauth2-jwt-bearer')
-
 const dotenv = require('dotenv')
 dotenv.config()
 
-const _tokenError = function (err, req, res, next) {
+const _tokenError = function(err, req, res, next) {
     if (err.status === 401) {
         err.message = err.statusMessage = `This token does not have permission to perform this action. 
         ${err.message}
@@ -16,17 +12,14 @@ const _tokenError = function (err, req, res, next) {
     }
 }
 
+/**
+ * Get the Auth0 User JSON Object out of the encoded token.
+ */
 const _extractUser = (req, res, next) => {
     req.user = JSON.parse(Buffer.from(req.header("authorization").split(" ")[1].split('.')[1], 'base64').toString())
     next()
 }
 
-/**
- * Use like: 
- * app.get('/api/private', checkJwt, function(req, res) {
- *   // do authorized things
- * });
- */
 const checkJwt = [auth(), _tokenError, _extractUser]
 
 /**

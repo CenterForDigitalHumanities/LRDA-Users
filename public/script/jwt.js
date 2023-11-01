@@ -28,12 +28,12 @@ function polyfill(input) {
         (buffer = str.charAt(idx++));
         // character found in table? initialize bit storage and add its ascii value;
         ~buffer &&
-            ((bs = bc % 4 ? bs * 64 + buffer : buffer),
-                // and if not first of each 4 characters,
-                // convert the first 8 bits to one ascii character
-                bc++ % 4) ?
-            (output += String.fromCharCode(255 & (bs >> ((-2 * bc) & 6)))) :
-            0
+        ((bs = bc % 4 ? bs * 64 + buffer : buffer),
+            // and if not first of each 4 characters,
+            // convert the first 8 bits to one ascii character
+            bc++ % 4) ?
+        (output += String.fromCharCode(255 & (bs >> ((-2 * bc) & 6)))) :
+        0
     ) {
         // try to find character in table (0-63, not found => -1)
         buffer = chars.indexOf(buffer);
@@ -42,13 +42,13 @@ function polyfill(input) {
 }
 
 var atob = (typeof window !== "undefined" &&
-    window.atob &&
-    window.atob.bind(window)) ||
+        window.atob &&
+        window.atob.bind(window)) ||
     polyfill;
 
 function b64DecodeUnicode(str) {
     return decodeURIComponent(
-        atob(str).replace(/(.)/g, function (m, p) {
+        atob(str).replace(/(.)/g, function(m, p) {
             var code = p.charCodeAt(0).toString(16).toUpperCase();
             if (code.length < 2) {
                 code = "0" + code;
@@ -120,7 +120,7 @@ function jwtDecode(token, options) {
 //use amd or just through the window object.
 if (window) {
     if (typeof window.define == "function" && window.define.amd) {
-        window.define("jwt_decode", function () {
+        window.define("jwt_decode", function() {
             return jwtDecode;
         });
     } else if (window) {

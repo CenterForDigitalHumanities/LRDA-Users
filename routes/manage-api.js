@@ -173,21 +173,6 @@ router.post('/assignRole', async function (req, res, next) {
 })
 
 /**
- * The URL hash from the authorize endpoint looks like #access_token=...&scope=...&
- * Pass in the URL with the hash and the variable to grab.
- * The value for that variable is returned.
- */
-function getURLHash(variable, url) {
-  var query = url.substr(url.indexOf("#") + 1)
-  var vars = query.split("&")
-  for (var i = 0; i < vars.length; i++) {
-    var pair = vars[i].split("=")
-    if (pair[0] == variable) { return pair[1] }
-  }
-  return false
-}
-
-/**
  *  Given a user profile, check if that user is a Where's Religion Mobile App admin.
  */
 function isAdmin(user) {

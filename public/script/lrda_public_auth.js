@@ -30,10 +30,10 @@ const webAuth = new auth0.WebAuth({
 const logout = () => {
     localStorage.removeItem("userToken")
     delete window.LRDA_USER
-    document.querySelectorAll('[is="auth-creator"]').forEach(el=>el.connectedCallback())
+    document.querySelectorAll('[is="auth-creator"]').forEach(el => el.connectedCallback())
     webAuth.logout({ returnTo: origin })
 }
-const login = (custom) => webAuth.authorize(Object.assign({ authParamsMap: { 'app': 'lrda' } },custom))
+const login = (custom) => webAuth.authorize(Object.assign({ authParamsMap: { 'app': 'lrda' } }, custom))
 
 const getReferringPage = () => {
     try {
@@ -62,10 +62,10 @@ class AuthButton extends HTMLButtonElement {
             localStorage.setItem("userToken", result.idToken)
             window.LRDA_USER = result.idTokenPayload
             window.LRDA_USER.authorization = result.accessToken
-            document.querySelectorAll('[is="auth-creator"]').forEach(el=>el.connectedCallback())
+            document.querySelectorAll('[is="auth-creator"]').forEach(el => el.connectedCallback())
             this.innerText = `Logout ${LRDA_USER.nickname}`
             this.removeAttribute('disabled')
-            const loginEvent = new CustomEvent('lrda-authenticated',{detail:window.LRDA_USER})
+            const loginEvent = new CustomEvent('lrda-authenticated', { detail: window.LRDA_USER })
             this.dispatchEvent(loginEvent)
         })
     }
@@ -79,7 +79,7 @@ class AuthCreator extends HTMLInputElement {
     }
 
     connectedCallback() {
-        if(!window.LRDA_USER) { return }
+        if (!window.LRDA_USER) { return }
         this.value = LRDA_USER["http://store.rerum.io/agent"] ?? "anonymous"
     }
 }
@@ -104,4 +104,4 @@ function urlToBase64(url) {
     return window.btoa(url).replace(/\//g, "_").replace(/\+/g, "-").replace(/=+$/, "")
 }
 
-export default {AuthButton, AuthCreator}
+export default { AuthButton, AuthCreator }

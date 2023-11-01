@@ -9,7 +9,6 @@
  */
 const jest = require('jest')
 const runCLI = require('jest-cli')
-//const defaults = require('../jest.config.js')
 var app = require('../app')
 var http = require('http')
 
@@ -37,7 +36,7 @@ server.on('listening', onListening)
 
 /**
  * Control the keep alive header
- */ 
+ */
 // Ensure all inactive connections are terminated by the ALB, by setting this a few seconds higher than the ALB idle timeout
 server.keepAliveTimeout = 8 * 1000 //8 seconds
 // Ensure the headersTimeout is set higher than the keepAliveTimeout due to this nodejs regression bug: https://github.com/nodejs/node/issues/27363
@@ -48,19 +47,19 @@ server.headersTimeout = 8.5 * 1000 //8 seconds
  */
 
 function normalizePort(val) {
-  const portCheck = parseInt(val, 10)
+    const portCheck = parseInt(val, 10)
 
-  if (isNaN(portCheck)) {
-    // named pipe
-    return val
-  }
+    if (isNaN(portCheck)) {
+        // named pipe
+        return val
+    }
 
-  if (portCheck >= 0) {
-    // port number
-    return portCheck
-  }
+    if (portCheck >= 0) {
+        // port number
+        return portCheck
+    }
 
-  return false
+    return false
 }
 
 /**
@@ -68,27 +67,27 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error
-  }
+    if (error.syscall !== 'listen') {
+        throw error
+    }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port
+    var bind = typeof port === 'string' ?
+        'Pipe ' + port :
+        'Port ' + port
 
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges')
-      process.exit(1)
-      break
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use')
-      process.exit(1)
-      break
-    default:
-      throw error
-  }
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges')
+            process.exit(1)
+            break
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use')
+            process.exit(1)
+            break
+        default:
+            throw error
+    }
 }
 
 /**
@@ -96,23 +95,20 @@ function onError(error) {
  */
 
 async function onListening() {
-  console.log("LISTENING ON "+port)
-  //Ideally, create and then blow this away.
-  process.env.MONGODBNAME="annotationStoreTesting"
-  jest.runCLI(
-    {
-      "colors" : "true"
-    }, 
-    ["jest.config.js"])
-    .then(({ results }) => {
-      if (results.success) {
-        console.log('Tests completed')
-        process.exit(0)
-      } 
-      else {
-        console.error('Tests failed')
-        process.exit(1)
-      }
-  })
+    console.log("LISTENING ON " + port)
+    //Ideally, create and then blow this away.
+    process.env.MONGODBNAME = "annotationStoreTesting"
+    jest.runCLI({
+                "colors": "true"
+            },
+            ["jest.config.js"])
+        .then(({ results }) => {
+            if (results.success) {
+                console.log('Tests completed')
+                process.exit(0)
+            } else {
+                console.error('Tests failed')
+                process.exit(1)
+            }
+        })
 }
-

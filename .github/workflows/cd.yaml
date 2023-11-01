@@ -1,4 +1,4 @@
-name: Where's Religion Users deploy on push to main.
+name: Where's Religion Mobile App User Management Portal deploy on push to main.
 on:
   push:
     branches: main

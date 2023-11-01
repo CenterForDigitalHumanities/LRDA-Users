@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+/**
+ * Register the static pages and API routes under NodeJS Express.
+ */
+
 const createError = require('http-errors')
 const express = require('express')
 const path = require('path')
@@ -25,29 +29,29 @@ var app = express()
  * "exposedHeaders" : Access-Control-Expose-Headers (Expose the custom headers)
  * "origin" : "*"   : Access-Control-Allow-Origin   (Allow ALL the origins)
  * "maxAge" : "600" : Access-Control-Max-Age        (how long to cache preflight requests, 10 mins)
- */ 
+ */
 app.use(
-  cors({
-    "methods" : "GET,OPTIONS,HEAD,PUT,PATCH,DELETE,POST",
-    "allowedHeaders" : [
-      'Content-Type',
-      'Content-Length',
-      'Allow',
-      'Authorization',
-      'Location',
-      'ETag',
-      'Connection',
-      'Keep-Alive',
-      'Date',
-      'Cache-Control',
-      'Last-Modified',
-      'Link',
-      'X-HTTP-Method-Override'
-    ],
-    "exposedHeaders" : "*",
-    "origin" : "*",
-    "maxAge" : "600"
-  })
+    cors({
+        "methods": "GET,OPTIONS,HEAD,PUT,PATCH,DELETE,POST",
+        "allowedHeaders": [
+            'Content-Type',
+            'Content-Length',
+            'Allow',
+            'Authorization',
+            'Location',
+            'ETag',
+            'Connection',
+            'Keep-Alive',
+            'Date',
+            'Cache-Control',
+            'Last-Modified',
+            'Link',
+            'X-HTTP-Method-Override'
+        ],
+        "exposedHeaders": "*",
+        "origin": "*",
+        "maxAge": "600"
+    })
 )
 app.use(logger('dev'))
 app.use(express.json())
@@ -62,7 +66,7 @@ app.use('/', indexRouter)
 //catch 404 because of an invalid site path
 app.use(function(req, res, next) {
     let msg = res.statusMessage ?? "This page does not exist"
-    res.status(404).send(msg)  
+    res.status(404).send(msg)
     res.end()
 })
 

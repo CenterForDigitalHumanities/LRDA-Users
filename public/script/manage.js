@@ -1,4 +1,11 @@
 #!/usr/bin/env node
+
+/**
+ * This allows Admin users the ability to change the roles of other users.
+ * It can support the functionality for profile.html which allows user to update profile information like E-mail and username.
+ * However, that is turned off by being commented out for now.
+ */
+
 const auth = document.querySelector('[is="auth-button"]')
 import jwt_decode from "/script/jwt.js"
 
@@ -7,7 +14,7 @@ const LRDA_USER_ROLES_CLAIM = "http://rerum.io/user_roles"
 auth.addEventListener("lrda-authenticated", ev => {
     const ref = getReferringPage()
     if (ref && ref.startsWith(location.href)) {
-        stopHeartbeat()
+        //stopHeartbeat()
         location.href = ref
     }
     if (window.username) {
@@ -20,7 +27,7 @@ auth.addEventListener("lrda-authenticated", ev => {
             try {
                 document.querySelector(`input[name='${prop}']`)?.setAttribute('value', ev.detail[prop])
                 document.querySelector(`[data-${prop}]`)?.setAttribute(`data-${prop}`, ev.detail[prop])
-            } catch (err) { }
+            } catch (err) {}
         }
         document.querySelector(`[data-picture]`).innerHTML = `<img src="${ev.detail.picture}"/>`
     }
@@ -51,14 +58,15 @@ async function adminOnly(token = window.LRDA_USER?.authorization) {
                             ${user.role === b && "selected=true"}
                             value="${b}">${b}</option>
                         `
-                        }, ``)} 
+                        }, `
+                `)} 
                     </select>
                 </li>
         `
             }
             userList.innerHTML += elem
-            userList.querySelectorAll('select').forEach(el=>{
-                el.addEventListener('input',event=>assignRole(event.target.name,event.target.value))
+            userList.querySelectorAll('select').forEach(el => {
+                el.addEventListener('input', event => assignRole(event.target.name, event.target.value))
             })
         } else {
             allUsers.classList.add("is-hidden")
@@ -84,16 +92,16 @@ async function assignRole(userid, role) {
     let url = `/lrda-users/manage/assignRole`
     const roleTag = document.querySelector(`.role[userid="${userid}"]`)
     fetch(url, {
-        method: 'POST',
-        cache: 'default',
-        headers: {
-            'Authorization': `Bearer ${window.LRDA_USER?.authorization}`,
-            'Content-Type': "application/json; charset=utf-8"
-        },
-        body: JSON.stringify({ role, userid })
-    })
+            method: 'POST',
+            cache: 'default',
+            headers: {
+                'Authorization': `Bearer ${window.LRDA_USER?.authorization}`,
+                'Content-Type': "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({ role, userid })
+        })
         .then(_resp => {
-            if(!_resp.ok) throw _resp
+            if (!_resp.ok) throw _resp
             roleTag.innerHTML = role
             roleTag.classList.add('badge-success')
             roleTag.classList.remove('badge-danger')
@@ -145,32 +153,22 @@ async function assignRole(userid, role) {
 //         }
 // }
 
-// /**
-//  * Auth0 redirects here with a bunch of info in hash variables.
-//  * This function allows you pull a single variable from the hash
-//  */
-// function getURLHash(variable, urlString = document.location.href) {
-//     const url = new URL(urlString)
-//     var vars = new URLSearchParams(url.hash.substring(1))
-//     return vars.get(variable) ?? false
-// }
-
 /**
  * Use our Auth0 Server back end to ask for all the Dunbap Apps users.
  */
 async function getAllUsers() {
     return fetch("/lrda-users/manage/getAllUsers", {
-        "method": "GET",
-        "cache": "no-store",
-        "headers": {
-            "Authorization": `Bearer ${window.LRDA_USER?.authorization}`
-        }
-    })
+            "method": "GET",
+            "cache": "no-store",
+            "headers": {
+                "Authorization": `Bearer ${window.LRDA_USER?.authorization}`
+            }
+        })
         .then(resp => {
-            if(!resp.ok) throw resp
+            if (!resp.ok) throw resp
             return resp.json()
         })
-        .catch(async err  => {
+        .catch(async err => {
             console.error(err.status)
             return []
         })
@@ -212,5 +210,5 @@ function getReferringPage() {
  */
 function userHasRole(user, roles) {
     if (!Array.isArray(roles)) { roles = [roles] }
-    return Boolean(user?.[LRDA_USER_ROLES_CLAIM]?.roles.filter(r => roles.includes(r)).length)
+    return Boolean(user?. [LRDA_USER_ROLES_CLAIM]?.roles.filter(r => roles.includes(r)).length)
 }
